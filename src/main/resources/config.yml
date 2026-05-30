@@ -1,0 +1,145 @@
+wheat: #6
+  stage_time:
+    min: 150
+    max: 250
+  effect: 180
+  dry: 60
+  rot: 300
+  bone_meal_cooldown: 300
+  harvestingCommands:
+    - "atotalstats addstat %player% harvesting-plant-total 1"
+    - "atotalstats addstat %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1 %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1-daily %player% harvesting-plant-%plant% 1"
+beetroots: #3
+  stage_time:
+    min: 400
+    max: 500
+  effect: 180
+  dry: 60
+  rot: 300
+  bone_meal_cooldown: 300
+  harvestingCommands:
+    - "atotalstats addstat %player% harvesting-plant-total 1"
+    - "atotalstats addstat %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1 %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1-daily %player% harvesting-plant-%plant% 1"
+potatoes: #6
+  stage_time:
+    min: 150
+    max: 250
+  effect: 180
+  dry: 60
+  rot: 300
+  bone_meal_cooldown: 300
+  harvestingCommands:
+    - "atotalstats addstat %player% harvesting-plant-total 1"
+    - "atotalstats addstat %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1 %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1-daily %player% harvesting-plant-%plant% 1"
+carrots: #6
+  stage_time:
+    min: 150
+    max: 250
+  effect: 180
+  dry: 60
+  rot: 300
+  bone_meal_cooldown: 300
+  harvestingCommands:
+    - "atotalstats addstat %player% harvesting-plant-total 1"
+    - "atotalstats addstat %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1 %player% harvesting-plant-%plant% 1"
+    - "atotalstats addeventstat bp1-daily %player% harvesting-plant-%plant% 1"
+pumpkin_stem: #7
+  stage_time:
+    min: 150
+    max: 250
+  effect: 180
+  dry: 60
+  effect_on_grown: 900
+  dry_on_grown: 60
+  rot_block: 300
+  bone_meal_cooldown: 300
+  harvestingBlockCommands: #block
+    - "atotalstats addstat %player% harvesting-block-total 1"
+    - "atotalstats addstat %player% harvesting-block-%block% 1"
+    - "atotalstats addeventstat bp1 %player% harvesting-block-%block% 1"
+    - "atotalstats addeventstat bp1-daily %player% harvesting-plant-%plant% 1"
+melon_stem: #7
+  stage_time:
+    min: 150
+    max: 250
+  effect: 180
+  dry: 60
+  effect_on_grown: 900
+  dry_on_grown: 60
+  rot_block: 300
+  bone_meal_cooldown: 300
+  harvestingBlockCommands: #block
+    - "atotalstats addstat %player% harvesting-block-total 1"
+    - "atotalstats addstat %player% harvesting-block-%block% 1"
+    - "atotalstats addeventstat bp1 %player% harvesting-block-%block% 1"
+    - "atotalstats addeventstat bp1-daily %player% harvesting-block-%plant% 1"
+
+pots:
+  bottle:
+    effect: 180
+    effect_on_grown: 900
+    radius: 0
+  plastic_pot:
+    durability: 50
+    effect: 180
+    effect_on_grown: 900
+    model: 502010 #502010-502015
+    radius: 0
+    fullness: 5
+  copper_pot:
+    durability: 80
+    effect: 180
+    effect_on_grown: 900
+    model: 502020
+    radius: 0
+    fullness: 10
+  golden_pot:
+    durability: 60
+    effect: 300
+    effect_on_grown: 1500
+    model: 502030
+    radius: 0
+    fullness: 5
+  iron_pot:
+    durability: 200
+    effect: 240
+    effect_on_grown: 1200
+    model: 502040
+    radius: 1
+    fullness: 10
+  diamond_pot:
+    durability: 800
+    effect: 240
+    effect_on_grown: 1500
+    model: 502050
+    radius: 1
+    fullness: 15
+  netherite_pot:
+    durability: 5000
+    effect: 360
+    effect_on_grown: 2100
+    model: 502060
+    radius: 2
+    fullness: 25
+  rain:
+    effect: 180
+    effect_on_grown: 900
+    
+farmlandDryTime: 30
+
+locale:
+  plastic_pot_name: "###alocales_roleplay_item-custom-plastic-pot###"
+  copper_pot_name: "###alocales_roleplay_item-custom-copper-pot###"
+  golden_pot_name: "###alocales_roleplay_item-custom-golden-pot###"
+  iron_pot_name: "###alocales_roleplay_item-custom-iron-pot###"
+  diamond_pot_name: "###alocales_roleplay_item-custom-diamond-pot###"
+  netherite_pot_name: "###alocales_roleplay_item-custom-netherite-pot###"
+  durability: "###alocales_roleplay_item-custom-pot-lore-durability###"
+  fullness: "###alocales_roleplay_item-custom-pot-lore-fullness###"
