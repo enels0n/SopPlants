@@ -20,5 +20,6 @@
 
 ## Notes
 
+- depends on `SopLib` for shared text formatting via `TextUtils`
 - built against `1.20.4`-style NMS imports
 - produces a single final `SopPlants.jar` without `original-*` release clutter

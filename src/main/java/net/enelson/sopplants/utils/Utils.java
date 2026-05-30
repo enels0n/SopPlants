@@ -16,11 +16,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
 
+import net.enelson.sopli.lib.text.TextUtils;
 import net.enelson.sopplants.SopPlants;
 import net.enelson.sopplants.data.Watered;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Utils {
+	private static final TextUtils TEXT_UTILS = new TextUtils();
+
 	public static Location getDeserializedLocation(String s) {
 		final String[] split = s.split(",");
 		return new Location(Bukkit.getWorld(split[0]), Double.parseDouble(split[1]), Double.parseDouble(split[2]),
@@ -63,11 +66,11 @@ public class Utils {
 		ItemStack item = CraftItemStack.asBukkitCopy(stack);
 		item.setAmount(1);
 		ItemMeta meta  = item.getItemMeta();
-		meta.setDisplayName(SopPlants.config.getString("locale."+type+"_name"));
+		meta.setDisplayName(TEXT_UTILS.color(SopPlants.config.getString("locale."+type+"_name")));
 		List<String> lore = new ArrayList<>();
-		lore.add(SopPlants.config.getString("locale.fullness") + ": " + 0 +"/" + fullness);
+		lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.fullness") + ": " + 0 +"/" + fullness));
 		lore.add("");
-		lore.add(SopPlants.config.getString("locale.durability") + ": " + durability +"/" + durability);
+		lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.durability") + ": " + durability +"/" + durability));
 		meta.setLore(lore);
 		meta.setCustomModelData(SopPlants.config.getInt("pots."+type+".model"));
 		item.setItemMeta(meta);
@@ -164,9 +167,9 @@ public class Utils {
 		int maxDurability = tag.h("SopPlants-maxdurability");
 		if(durability > maxDurability)
 			durability = maxDurability;
-		lore.add(SopPlants.config.getString("locale.fullness") + ": " + fullness +"/" + tag.h("SopPlants-maxfullness"));
+		lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.fullness") + ": " + fullness +"/" + tag.h("SopPlants-maxfullness")));
 		lore.add("");
-		lore.add(SopPlants.config.getString("locale.durability") + ": " + durability +"/" + maxDurability);
+		lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.durability") + ": " + durability +"/" + maxDurability));
 
 		meta.setLore(lore);
 		

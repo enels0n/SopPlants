@@ -80,6 +80,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>net.enelson.sopli.lib</groupId>
+            <artifactId>soplib-core</artifactId>
+            <version>1.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>net.minecraft.server</groupId>
             <artifactId>Main</artifactId>
             <version>1.0</version>
