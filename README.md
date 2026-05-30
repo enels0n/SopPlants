@@ -21,5 +21,6 @@
 ## Notes
 
 - depends on `SopLib` for shared text formatting via `TextUtils`
+- custom item metadata is handled through `SopLib` item helpers instead of direct NMS
 - built against `1.20.4`-style NMS imports
 - produces a single final `SopPlants.jar` without `original-*` release clutter
