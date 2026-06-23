@@ -41,7 +41,9 @@ public class SopPlants extends JavaPlugin {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.getCommand("sopplants").setExecutor(new MainCommand());
+		MainCommand mainCommand = new MainCommand();
+		this.getCommand("sopplants").setExecutor(mainCommand);
+		this.getCommand("sopplants").setTabCompleter(mainCommand);
 	}
 
 	

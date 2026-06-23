@@ -135,11 +135,15 @@ pots:
 farmlandDryTime: 30
 
 locale:
-  plastic_pot_name: "###alocales_roleplay_item-custom-plastic-pot###"
-  copper_pot_name: "###alocales_roleplay_item-custom-copper-pot###"
-  golden_pot_name: "###alocales_roleplay_item-custom-golden-pot###"
-  iron_pot_name: "###alocales_roleplay_item-custom-iron-pot###"
-  diamond_pot_name: "###alocales_roleplay_item-custom-diamond-pot###"
-  netherite_pot_name: "###alocales_roleplay_item-custom-netherite-pot###"
-  durability: "###alocales_roleplay_item-custom-pot-lore-durability###"
-  fullness: "###alocales_roleplay_item-custom-pot-lore-fullness###"
+  fullness: "&bВода"
+  durability: "&7Прочность"
+  description:
+    - ""
+    - "&7Полейте грядку, чтобы ускорить"
+    - "&7рост растений поблизости."
+  plastic_pot_name: "&fПластиковая лейка"
+  copper_pot_name: "&6Медная лейка"
+  golden_pot_name: "&eЗолотая лейка"
+  iron_pot_name: "&7Железная лейка"
+  diamond_pot_name: "&bАлмазная лейка"
+  netherite_pot_name: "&8Незеритовая лейка"

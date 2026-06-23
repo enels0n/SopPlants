@@ -12,6 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Farmland;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -62,23 +63,47 @@ public class Utils {
         }
     }
 
+    /**
+     * Returns the list of pot types that can be given out as items
+     * (every entry under "pots" that defines a custom model, i.e. excluding
+     * the special "bottle" and "rain" sources).
+     */
+    public static List<String> getGiveableTypes() {
+        List<String> types = new ArrayList<String>();
+        ConfigurationSection pots = SopPlants.config.getConfigurationSection("pots");
+        if (pots == null) {
+            return types;
+        }
+        for (String key : pots.getKeys(false)) {
+            if (pots.contains(key + ".model")) {
+                types.add(key);
+            }
+        }
+        return types;
+    }
+
+    public static boolean isGiveableType(String type) {
+        return type != null && getGiveableTypes().contains(type);
+    }
+
     public static ItemStack createPot(String type) {
+        if (!isGiveableType(type)) {
+            return null;
+        }
+
         int durability = SopPlants.config.getInt("pots." + type + ".durability");
         int fullness = SopPlants.config.getInt("pots." + type + ".fullness");
         int model = SopPlants.config.getInt("pots." + type + ".model");
 
-        List<String> lore = new ArrayList<String>();
-        lore.add(SopPlants.config.getString("locale.fullness") + ": 0/" + fullness);
-        lore.add("");
-        lore.add(SopPlants.config.getString("locale.durability") + ": " + durability + "/" + durability);
+        String name = TEXT_UTILS.color(SopPlants.config.getString("locale." + type + "_name", type));
 
         return itemUtils().createItem(
                 "SHEARS",
                 1,
                 model,
-                SopPlants.config.getString("locale." + type + "_name"),
+                name,
                 null,
-                lore,
+                buildLore(0, fullness, durability, durability),
                 Arrays.asList(
                         KEY_TYPE + "::" + type,
                         KEY_FULLNESS + "::0",
@@ -87,6 +112,21 @@ public class Utils {
                         KEY_MAX_DURABILITY + "::" + durability
                 )
         );
+    }
+
+    /**
+     * Builds the (already colored) lore shared by freshly created pots and
+     * pots updated through {@link #setParams(ItemStack, int, int)}.
+     */
+    private static List<String> buildLore(int fullness, int maxFullness, int durability, int maxDurability) {
+        List<String> lore = new ArrayList<String>();
+        lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.fullness") + ": " + fullness + "/" + maxFullness));
+        lore.add("");
+        lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.durability") + ": " + durability + "/" + maxDurability));
+        for (String line : SopPlants.config.getStringList("locale.description")) {
+            lore.add(TEXT_UTILS.color(line));
+        }
+        return lore;
     }
 
     public static int getDurability(ItemStack item) {
@@ -157,11 +197,7 @@ public class Utils {
         ));
 
         ItemMeta meta = updated.getItemMeta();
-        List<String> lore = new ArrayList<String>();
-        lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.fullness") + ": " + currentFullness + "/" + maxFullness));
-        lore.add("");
-        lore.add(TEXT_UTILS.color(SopPlants.config.getString("locale.durability") + ": " + currentDurability + "/" + maxDurability));
-        meta.setLore(lore);
+        meta.setLore(buildLore(currentFullness, maxFullness, currentDurability, maxDurability));
 
         int model = (int) Math.ceil((double) currentFullness / maxFullness * 5);
         meta.setCustomModelData(SopPlants.config.getInt("pots." + type + ".model") + model);

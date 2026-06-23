@@ -21,6 +21,7 @@ import org.bukkit.inventory.ItemStack;
 
 import net.enelson.sopplants.SopPlants;
 import net.enelson.sopplants.data.Watered;
+import net.enelson.sopplants.event.PlantActionEvent;
 import net.enelson.sopplants.utils.Utils;
 
 public class PlantWateringHandler implements Listener {
@@ -82,6 +83,8 @@ public class PlantWateringHandler implements Listener {
 				use++;
 			else
 				return;
+
+			Bukkit.getPluginManager().callEvent(new PlantActionEvent(e.getPlayer(), "WATER", e.getClickedBlock().getType().name().toLowerCase()));
 			
 			for (int x = centerX-radius; x <= centerX+radius; x++) {
 				for (int z = centerZ-radius; z <= centerZ+radius; z++) {

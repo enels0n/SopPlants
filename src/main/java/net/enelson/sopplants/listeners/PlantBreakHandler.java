@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import net.enelson.sopplants.SopPlants;
 import net.enelson.sopplants.data.PlantBlock;
 import net.enelson.sopplants.data.Watered;
+import net.enelson.sopplants.event.PlantActionEvent;
 import net.enelson.sopplants.utils.Utils;
 
 public class PlantBreakHandler implements Listener {
@@ -32,9 +33,12 @@ public class PlantBreakHandler implements Listener {
 		Watered watered = SopPlants.manager.getWatered(e.getBlock().getLocation());
 		if (watered != null) {
 			SopPlants.manager.removeWatered(watered);
-			if(!watered.isGrown())
+			if(!watered.isGrown()) {
+				Bukkit.getPluginManager().callEvent(new PlantActionEvent(e.getPlayer(), "BREAK", watered.getType().name().toLowerCase()));
 				return;
+			}
 			String type = watered.getType().name().toLowerCase();
+			Bukkit.getPluginManager().callEvent(new PlantActionEvent(e.getPlayer(), "HARVEST", type));
 			List<String> commands = SopPlants.config.getStringList(type+".harvestingCommands");
 			if(commands != null) {
 				for(String cmd : commands) {
